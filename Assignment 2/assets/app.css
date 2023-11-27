@@ -1,0 +1,537 @@
+/* Utility class to hide elements */
+.d-none {
+    display: none;
+}
+
+/* Styles for sortable table headers */
+table th {
+    cursor: pointer;
+    position: relative;
+    padding-right: 26px;
+    text-align: left;
+    border-bottom: solid 2px black;
+}
+
+
+/* Used some code from "https://stackoverflow.com/questions/17639562/add-sorting-arrows-to-th-like-table-sorter" to help with table sort arrows */
+table thead > tr > th.sorting:before {
+    bottom: 50%;
+    content: "▲";
+    position: absolute;
+    display: block;
+    right: 10px;
+    line-height: 9px;
+    font-size: .8em;
+    opacity: 0.25;
+    padding: 0;
+    color: #4472C4;
+}
+
+table thead > tr > th.sorting-desc:before {
+    content: "▼";
+}
+
+table thead > tr > th.sorting-asc:before,
+table thead > tr > th.sorting-desc:before {
+    opacity: 1;
+}
+
+/* Basic styling for the HTML document */
+html {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    display: block;
+    background: #330F53; /* Set background color for the entire page */
+    color: white; /* Set text color for the entire page */
+    /*font-family: system-ui, -apple-system, "Roboto", "Segoe UI", "HelveticaNeue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
+    font-family: Verdana, Geneva, Tahoma, sans-serif 
+}
+
+/* Header and navigation styling */
+.bg-D0CECE {
+    background: #330F53;
+    /*border: 1px;
+    border-color: grey;
+    border-style: solid; */
+}
+
+header {
+    margin-bottom: 0rem;
+    border: none;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+}
+
+h1 {
+    margin: 0.5rem;
+}
+
+a {
+    text-decoration: none;
+    color: white !important;
+}
+
+/* Tooltip styles to reveal hidden block that shows project members and github link*/
+ .tooltip {
+    position: relative; 
+    display: inline-block; 
+    border: solid 1px #677EA8;
+    background: hsl(198, 60%, 66%);
+    cursor: pointer;
+    border-radius: 0%;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+    padding: 10px 28px;
+    color: white !important;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+/* List and link styling */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li a {
+    padding: 5px 10px;
+    display: block;
+}
+
+/* Footer styling */
+footer {
+    color: white;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #75BDDC;
+}
+
+/* Button styling */
+.headerbutton{
+    border: solid 1px #677EA8;
+    background: #75BDDC;
+    padding: 5px 10px;
+    margin-right: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif
+    
+}
+
+    /* Source for styling and effect taken from this tutorial: https://youtu.be/xnltEHWWjiM?si=xUed8I8gy9xJlzEu */
+
+a.headerbutton{
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+    padding: 10px 30px;
+    transition: 0.5s;
+    text-decoration: none;
+    color: white !important;
+}
+
+a.headerbutton:hover{
+    background: var(--clr);
+    color: var(--clr);
+    letter-spacing: 0.25em;
+    box-shadow: 0 0 35px var(--clr)
+}
+
+.tooltip {
+    position: relative; 
+    display: inline-block; 
+    border: solid 1px #677EA8;
+    background: hsl(198, 60%, 66%);
+    cursor: pointer;
+    border-radius: 0%;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+    padding: 10px 28px;
+    color: white !important;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    top: 100%;
+    right: -20px;
+    margin-left: -60px;
+    background-color: black;
+    border: solid 1px #677EA8;
+    padding: 10px 20px;
+    position: absolute;
+    z-index: 1;
+    transition: visibility 5s;
+    cursor: default;
+}
+
+.tooltip:hover{
+    background: var(--clr);
+    color: var(--clr);
+    letter-spacing: 0.25em;
+    box-shadow: 0 0 35px var(--clr)
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.tooltip p {
+    margin: 0 0 1rem;
+}
+
+/* Flexbox utility class */
+.d-flex {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Background color class */
+.bg-black {
+    background: black;
+    color: white; /* Set text color for elements with this class */
+}
+
+/* Home section styling */
+#home {
+    margin-bottom: 1rem;
+}
+
+#topGenres, #topArtists {
+    flex: 1 1 0;
+}
+
+#popularSongs {
+    flex: 2 1 0;
+    margin-right: 0;
+}
+
+/* General styling for sections */
+section:not([id="playlist"]) .d-flex > * {
+    padding: 20px;
+}
+
+#home .d-flex > * {
+    margin: 20px;
+}
+
+/* Class for the logo image and set its maximum width */
+.logo-img {
+    max-width: 40%;
+    padding-left: 10%;
+    max-height: 40%; 
+    display: block; 
+    margin-left: 10 auto;
+}
+
+
+#search .d-flex, #singleSong .d-flex {
+    justify-content: space-between;
+}
+
+/* Styling for the filter form */
+#filterForm {
+    width: 300px;
+    margin-right: 0.5em;
+    margin-left: 0.5em;
+    border: 2.5px;
+    border-style: solid;
+    border-color: grey;
+
+}
+
+#searchResults {
+    flex: 1 1 0;
+    border: 2.5px;
+    border-style: solid;
+    border-color: grey;
+    margin-right: 0.5em;
+}
+
+#filterForm * {
+    display: inline-block;
+}
+
+label {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#filterForm input[type='text'], #filterForm select {
+    width: 180px;
+    padding:10px;
+    border:0;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    border-radius:10px;
+}
+
+th, td {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5px;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: #75BDDC wavy underline;
+}
+
+main a {
+    text-decoration: none;
+    text-align: center;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+/* Scrollable tbody with fixed height */
+tbody {
+    display: block;
+    height: 500px;
+    overflow-y: auto;
+    border: 0.1em;
+    border-style: solid;
+    border-color: grey;
+}
+
+thead, tbody tr {
+    display: table;
+    width: 90%;
+    table-layout: fixed;
+
+}
+
+tbody a {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    display: inline-block;
+
+}
+
+/* Notification box styling */
+.tn-box {
+    width: 360px;
+    position: absolute;
+    margin: 0 auto 20px auto;
+    padding: 25px 15px;
+    text-align: left;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    opacity: 0;
+    cursor: default;
+    display: none;
+    background: #04AA6D;
+    color: white;
+    top: 10px;
+    right: 10px;
+}
+
+.tn-box p {
+    margin: 0;
+}
+
+/* Notification box progress bar */
+.tn-progress {
+    width: 0;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    position: absolute;
+    bottom: 5px;
+    left: 2%;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05),
+    0 -1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Animation for notification box */
+input.fire-check:checked ~ section .tn-box {
+    display: block;
+    animation: fadeOut 2s linear forwards;
+}
+
+input.fire-check:checked ~ section .tn-box .tn-progress {
+    animation: runProgress 1s linear forwards 0.5s;
+}
+
+.tn-box.tn-box-active {
+    display: block;
+    animation: fadeOut 2s linear forwards;
+}
+
+.tn-box.tn-box-active .tn-progress {
+    animation: runProgress 1s linear forwards 0.5s;
+}
+
+/* Keyframe animations for notification box */
+@keyframes fadeOut {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    99% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes runProgress {
+    0% {
+        width: 0%;
+        background: rgba(255, 255, 255, 0.3);
+    }
+    100% {
+        width: 96%;
+        background: rgba(255, 255, 255, 1);
+    }
+}
+
+.tn-box.tn-box-hoverpause:hover,
+.tn-box.tn-box-hoverpause:hover .tn-progress {
+    animation-play-state: paused;
+}
+
+/* Playlist section styling */
+#playlist h2 {
+    margin: 0;
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 2em;
+}
+
+#playlist h3 {
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
+#playlist {
+    padding: 20px;
+    margin-right: 2em;
+    margin-left: 2em;
+    margin-bottom: 3em;
+
+
+}
+
+#box2 {
+    background-color: #ffc107;
+    color: #75BDDC;
+}
+
+/* SingleSong section styling */
+#singleSong .d-flex > * {
+    flex: 1 1 0;
+    border: 0.5em;
+    border-style: solid;
+    border-color: grey;
+    margin-bottom: 5em;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#songInfo {
+    margin-right: 20px;
+}
+
+.mt-0 {
+    margin-top: 0;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+}
+
+#analysisData {
+    list-style: square;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 3em;
+    margin-left: 5em;
+    line-height: 200%;
+
+}
+
+.chart-container {
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+    margin-top: 3em;
+
+}
+
+.text-center {
+    text-align: center;
+}
+
+.button {
+    border: solid 1px #677EA8;
+    background: #75BDDC;
+    color: white;
+    padding: 3px 5px;
+    width: 4em;
+    height: 2em;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1em;
+    font-weight: 450;
+    text-wrap: nowrap;
+    margin-bottom: 0.25em;
+    margin-right: 0.5em;
+}
+
+.button3 {
+    border: solid 1px #677EA8;
+    background: #75BDDC;
+    color: white;
+    padding: 0px 10px;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 2em;
+    font-weight: 450;
+    text-wrap: nowrap;
+}

@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Set character encoding and viewport for better rendering on various devices -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!-- Specify compatibility with Internet Explorer -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Link to the external stylesheet for styling -->
+    <link rel="stylesheet" href="assets/app.css"/>
+    <!-- Set the title of the document -->
+    <title>Document</title>
+</head>
+<body>
+<!-- Header section with navigation -->
+<header class="bg-D0CECE">
+    <nav>
+    <!-- Logo linking to the home section -->
+    <a href="#" data-section="home"><img class="logo-img" src="assets/Crozify Logo.png" alt="Logo"></a>
+    <!-- Created this logo with brandcrowd.com and used it basis for colours in my web application -->
+        <div class="links">
+            <!-- Navigation buttons for different sections -->
+            <a href="#" class="headerbutton" data-section="search" style="--clr:#1e9bff">Search</a>
+            <a href="#" class="headerbutton" data-section="playlist" style="--clr:#1e9bff">Playlist</a>
+            <!-- Tooltip with credits information -->
+            <div class="tooltip" style="--clr:#1e9bff">Credits
+                <div class="tooltiptext">
+                    <p>Cody Crossman</p>
+                    <a href="https://github.com">GitHub url</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- Main content of the webpage -->
+<main>
+    <!-- Home section with sub-sections for displaying top genres, artists, and popular songs -->
+    <section id="home" class="bg-black">
+        <div class="d-flex">
+            <!-- Sections for top genres, artists, and popular songs with placeholders for content -->
+            <div id="topGenres" class="bg-D0CECE">
+                <h2>Top Genres</h2>
+                <ul>
+                    <li>Loading...</li>
+                </ul>
+            </div>
+            <div id="topArtists" class="bg-D0CECE">
+                <h2>Top Artists</h2>
+                <ul>
+                    <li>Loading...</li>
+                </ul>
+            </div>
+            <div id="popularSongs" class="bg-D0CECE">
+                <h2>Most Popular Songs</h2>
+                <ul>
+                    <li>Loading...</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- Search section with a form for filtering and a table for displaying search results -->
+    <section id="search" class="d-none">
+        <div class="d-flex">
+            <!-- Form for filtering search results by title, artist, or genre -->
+            <form id="filterForm" name="filterForm" class="bg-black">
+                <!-- Title filter -->
+                <input type="radio" id="titleRadio" name="filter" value="title" checked/>
+                <label for="titleRadio">Title</label>
+                <input type="text" name="title-filter" placeholder="Type Here"/>
+                <br/>
+                <br/>
+                <!-- Artist filter -->
+                <input type="radio" id="artistRadio" name="filter" value="artist"/>
+                <label for="artistRadio">Artist</label>
+                <select name="artist-filter" disabled></select>
+                <br/>
+                <br/>
+                <!-- Genre filter -->
+                <input type="radio" id="genreRadio" name="filter" value="genre"/>
+                <label for="genreRadio">Genre</label>
+                <select name="genre-filter" disabled></select>
+                <br/>
+                <br/>
+                <!-- Clear and filter buttons for the form -->
+                <input type="reset" value="Clear" class="button"/>
+                <input type="submit" value="Filter" class="button"/>
+            </form>
+            <!-- Table for displaying search results -->
+            <table id="searchResults" class="bg-black">
+                <thead>
+                <!-- Table headers for title, artist, year, genre, and an empty column -->
+                <tr>
+                    <th class="sorting sorting-asc" data-field="title">Title</th>
+                    <th class="sorting" data-field="artist">Artist</th>
+                    <th class="sorting" data-field="year">Year</th>
+                    <th class="sorting" data-field="genre">Genre</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <!-- Table body for displaying search results dynamically -->
+                <tbody></tbody>
+            </table>
+        </div>
+    </section>
+    <!-- Playlist section with details and a table for displaying playlist content -->
+    <section id="playlist" class="d-none bg-black">
+        <div class="d-flex">
+            <!-- Details about the playlist, number of songs, and a button to clear the playlist -->
+            <h2>Playlist Details</h2>
+            <h3><span id="playlistSongsNum"></span> songs, popularity ranking: <span id="averagePlaylistPopularity"></span></h3>
+            <button id="clearPlaylist" class="button3">Clear Playlist</button>
+        </div>
+        <!-- Table for displaying playlist content -->
+        <table id="playlistTable">
+            <thead>
+            <!-- Table headers for title, artist, year, genre, and an empty column -->
+            <tr>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Year</th>
+                <th>Genre</th>
+                <th></th>
+            </tr>
+            </thead>
+            <!-- Table body for displaying playlist content dynamically -->
+            <tbody></tbody>
+        </table>
+    </section>
+    <!-- Section for displaying information about a single song, including analysis data and a radar chart -->
+    <section id="singleSong" class="d-none">
+        <div class="d-flex">
+            <!-- Information about the song, including analysis data -->
+            <div id="songInfo" class="bg-black">
+                <h2>Song Information</h2>
+                <div id="mainInfo"></div>
+                <p class="mb-0">Analysis Data:</p>
+                <!-- List of analysis data for the song -->
+                <ul id="analysisData" class="mt-0">
+                    <li>bpm: <span id="bpm"></span></li>
+                    <li>energy: <span id="energy"></span></li>
+                    <li>danceability: <span id="danceability"></span></li>
+                    <li>liveness: <span id="liveness"></span></li>
+                    <li>valence: <span id="valence"></span></li>
+                    <li>acousticness: <span id="acousticness"></span></li>
+                    <li>speechiness: <span id="speechiness"></span></li>
+                    <li>popularity: <span id="popularity"></span></li>
+                </ul>
+            </div>
+            <!-- Radar chart for visualizing song analysis data -->
+            <div class="bg-black">
+                <h2 class="text-center">Radar Chart</h2>
+                <div class="chart-container">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- Notification boxes for indicating actions related to the playlist -->
+<div class="tn-box" id="box1">
+    <p>The song added to the playlist</p>
+    <div class="tn-progress"></div>
+</div>
+<div class="tn-box" id="box2">
+    <p>The song removed from the playlist</p>
+    <div class="tn-progress"></div>
+</div>
+<!-- Footer section of the webpage -->
+<footer class="feet">
+    <h1>Crozify &trade;</h1>
+</footer>
+<!-- Include the Chart.js library for creating charts -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Include the JavaScript file for the application logic -->
+<script type="text/javascript" src="assets/app.js"></script>
+</body>
+</html>
